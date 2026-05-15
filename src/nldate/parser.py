@@ -105,7 +105,18 @@ _COMPONENT_RE = re.compile(
 def _normalise(s: str) -> str:
     """Lowercase, strip extra whitespace, expand ordinal digits."""
     s = s.lower().strip()
+
+    # convert ordinals like "1st" -> "1"
     s = _ORDINAL_RE.sub(r"\1", s)
+
+    # normalize abbreviated months with periods:
+    # "Dec." -> "dec"
+    # "Sept." -> "sept"
+    s = re.sub(r"\b([a-z]{3,4})\.", r"\1", s)
+
+    # collapse repeated whitespace
+    s = re.sub(r"\s+", " ", s)
+
     return s
 
 
