@@ -326,9 +326,7 @@ def _try_start_of_month(s: str, today: date) -> date | None:
         "first of month",
     ):
         return date(today.year, today.month, 1)
-    m = re.fullmatch(
-        r"(?:start|beginning) of (?:the\s+)?([a-z]+)(?:\s+(\d{4}))?", s
-    )
+    m = re.fullmatch(r"(?:start|beginning) of (?:the\s+)?([a-z]+)(?:\s+(\d{4}))?", s)
     if m:
         month_num = MONTHS.get(m.group(1))
         if month_num:
