@@ -9,8 +9,11 @@ dependencies = []
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-dev-dependencies = [
+[tool.hatch.build.targets.wheel]
+packages = ["src/nldate"]
+
+[dependency-groups]
+dev = [
     "pytest>=8.0",
     "mypy>=1.10",
     "ruff>=0.4",
